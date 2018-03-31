@@ -1,9 +1,10 @@
 package com.spittr.web.test;
 
-import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +21,7 @@ import com.spittr.web.SpittleController;
 public class SpittleControllerTest {
 	
 	@Test
-	public void houldShowRecentSpittles() throws Exception {
+	public void shouldShowRecentSpittles() throws Exception {
 		List<Spittle> expectedSpittles = createSpittleList(20);
 		SpittleRepository mockRepository = mock(SpittleRepository.class);
 		when(mockRepository.findSpittles(Long.MAX_VALUE, 20)).thenReturn(expectedSpittles);
@@ -38,7 +39,7 @@ public class SpittleControllerTest {
 	}
 	
 	@Test
-	public void shouldShowRecentSpittles() throws Exception {
+	public void shouldShowPagedSpittles() throws Exception {
 		List<Spittle> expectedSpittles = createSpittleList(50);
 	    SpittleRepository mockRepository = mock(SpittleRepository.class);
 	    when(mockRepository.findSpittles(238900, 50)).thenReturn(expectedSpittles);
